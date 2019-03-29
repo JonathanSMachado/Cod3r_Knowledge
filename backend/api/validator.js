@@ -19,5 +19,14 @@ module.exports = app => {
         if(valueA !== valueB) throw errorMsg
     }
 
-    return { existsOrError, notExistsOrError, equalsOrError }
+    function isValidEmailOrError(email, errorMsg) {
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(!email.match(emailRegex)) throw errorMsg        
+    }
+
+    function numberOrError(number, errorMsg) {
+        if(!Number(number)) throw errorMsg
+    }
+
+    return { existsOrError, notExistsOrError, equalsOrError, isValidEmailOrError, numberOrError }
 }
