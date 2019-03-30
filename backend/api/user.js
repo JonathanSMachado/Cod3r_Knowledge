@@ -40,12 +40,12 @@ module.exports = app => {
             app.db('users')
                 .update(user)
                 .where({id: user.id})
-                .then(_ => res.status(204).send())
+                .then(_ => res.status(201).send())
                 .catch(err => res.status(500).send(err))
         } else {
             app.db('users')
                 .insert(user)
-                .then(_ => res.status(204).send())
+                .then(_ => res.status(201).send())
                 .catch(err => res.status(500).send(err))
         }
     }
@@ -58,22 +58,24 @@ module.exports = app => {
     }
 
     const getById = (req, res) => {
-        const userId = req.params.id || null
+        const id = req.params.id
         
         try {
-            validator.numberOrError(userId, 'ID do usuário deve ser numérico')
+            validator.numberOrError(id, 'ID do usuário deve ser numérico')
             
             app.db('users')
-            .select('id', 'name', 'email', 'admin')
-            .where({id: userId})
-            .then(user => { 
-                if(user.length > 0) {
-                    res.json(user)
-                } else {
-                    res.send(`Usuário (ID: ${userId}) não encontrado`)
-                }
-            })
-            .catch(err => res.status(500).send(err))
+                .select('id', 'name', 'email', 'admin')
+                .where({id: id})
+                .first()
+                .then(user => res.json(user))
+                // .then(user => { 
+                //     if(user) {
+                //         res.json(user)
+                //     } else {
+                //         res.status(404).send(`Usuário (ID: ${id}) não encontrado`)
+                //     }
+                // })
+                .catch(err => res.status(500).send(err))
             
         } catch(errorMsg) {
             res.status(400).send(errorMsg)
