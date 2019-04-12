@@ -6,6 +6,7 @@ module.exports = app => {
     }
     
     function notExistsOrError(value, errorMsg) {
+        console.log(value)
         try {
             existsOrError(value, errorMsg)
         } catch(errorMsg) {
