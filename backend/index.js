@@ -8,7 +8,7 @@ require('./config/mongodb')
 app.db = db
 app.mongoose = mongoose
 
-consign()
+consign({locale: 'pt-br'})
     .include('./config/passport.js')
     .then('./config/middlewares.js')
     .then('/api/validator.js')
