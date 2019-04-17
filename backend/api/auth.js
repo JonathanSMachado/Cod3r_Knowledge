@@ -48,6 +48,7 @@ module.exports = app => {
             }
         } catch(e) {
             //Problemas com token
+            // Não deixa erro subir
         }
 
         res.send(false)
