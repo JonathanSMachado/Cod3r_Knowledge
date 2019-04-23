@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <span>Copyright <strong>Jonathan S. Machdao</strong> © 2019</span>
+        <span>Copyright <strong>Jonathan S. Machado</strong> © 2019</span>
     </footer>
 </template>
 
