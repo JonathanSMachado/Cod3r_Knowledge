@@ -5,7 +5,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-title">{{ title }}</span>
-            <span class="stat-value">{{ mockValue }}</span>
+            <span class="stat-value">{{ value }}</span>
         </div>
     </div>
 </template>
@@ -18,10 +18,6 @@ export default {
     computed: {
         style() {
             return 'color: ' + ( this.color || '#000' )
-        },
-
-        mockValue() {
-            return Math.floor(Math.random() * 100);
         }
     }
 }
