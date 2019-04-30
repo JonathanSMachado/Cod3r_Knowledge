@@ -2,10 +2,16 @@ module.exports = app => {
     const { validator } = app.api
 
     const save = (req, res) => {
-        const category = { ...req.body }
+        const category = {
+            id: req.body.id,
+            name: req.body.name,
+            parentId: req.body.parentId
+        }
+
         if(req.params.id) category.id = req.params.id
 
         try {
+            validator.notEqualsOrError(parseInt(category.id), category.parentId, 'Categoria e Categoria Pai devem ser diferentes')
             validator.existsOrError(category.name, 'Nome da Categoria não informado')
         } catch(errorMsg) {
             return res.status(400).send(errorMsg)

@@ -6,7 +6,7 @@
                 <b-col md="6" sm="12">
                     <b-form-group label="Nome:" label-for="user-name">
                         <b-form-input id="user-name" type="text"
-                            v-model="user.name" required :readonly="readonly"
+                            v-model="user.name" required :readonly="readOnly"
                             placeholder="Informe o Nome do Usuário">
                         </b-form-input>
                     </b-form-group>
@@ -14,16 +14,16 @@
                 <b-col md="6" sm="12">
                     <b-form-group label="E-mail:" label-for="user-email">
                         <b-form-input id="user-email" type="text"
-                            v-model="user.email" required :readonly="readonly"
+                            v-model="user.email" required :readonly="readOnly"
                             placeholder="Informe o E-mail do Usuário">
                         </b-form-input>
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-form-checkbox id="user-admin" v-model="user.admin" class="mt-3 mb-3" :disabled="readonly">
+            <b-form-checkbox id="user-admin" v-model="user.admin" class="mt-3 mb-3" :disabled="readOnly">
                 Administrador ?
             </b-form-checkbox>
-            <b-row v-show="!readonly">
+            <b-row v-show="!readOnly">
                 <b-col md="6" sm="12">
                     <b-form-group label="Senha:" label-for="user-password">
                         <b-form-input id="user-password" type="password"
@@ -41,8 +41,8 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-row>
-                <b-col xs="12">
+            <b-row >
+                <b-col xs="12" class="d-flex justify-content-end">
                     <b-button variant="primary" v-if="mode === 'save'"
                         @click="save">Salvar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'"
@@ -131,7 +131,7 @@ export default {
     },
 
     computed: {
-        readonly() {
+        readOnly() {
             return this.mode === 'remove'
         }
     },

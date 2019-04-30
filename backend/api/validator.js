@@ -1,3 +1,5 @@
+const _ = require('lodash')
+
 module.exports = app => {
     function existsOrError(value, errorMsg) {
         if(!value) throw errorMsg
@@ -16,7 +18,17 @@ module.exports = app => {
     }
     
     function equalsOrError(valueA, valueB, errorMsg) {
-        if(valueA !== valueB) throw errorMsg
+        if(!_.isEqual(valueA, valueB)) throw errorMsg
+    }
+
+    function notEqualsOrError(valueA, valueB, errorMsg) {
+        try {
+            equalsOrError(valueA, valueB, errorMsg)
+        } catch(errorMsg) {
+            return
+        }
+    
+        throw errorMsg
     }
 
     function isValidEmailOrError(email, errorMsg) {
@@ -28,5 +40,5 @@ module.exports = app => {
         if(!Number(number)) throw errorMsg
     }
 
-    return { existsOrError, notExistsOrError, equalsOrError, isValidEmailOrError, numberOrError }
+    return { existsOrError, notExistsOrError, equalsOrError, notEqualsOrError, isValidEmailOrError, numberOrError }
 }
