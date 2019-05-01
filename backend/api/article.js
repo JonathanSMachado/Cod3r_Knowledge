@@ -58,7 +58,7 @@ module.exports = app => {
     const get = async (req, res) => {
         const page = req.query.page || 1
         const result = await app.db('articles').count('id').first()
-        const count = parseInt(result.count)
+        const count = parseInt(Object.values(result.count)[0])
 
         app.db('articles')
             .select('id', 'name', 'description')
