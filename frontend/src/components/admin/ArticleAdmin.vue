@@ -79,7 +79,7 @@ export default {
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
                 { key: 'description', label: 'Descrição', sortable: true },
-                { key: 'actions', label: 'Ações'}
+                { key: 'actions', label: 'Ações' }
             ]
         }
     },
