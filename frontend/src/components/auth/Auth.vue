@@ -1,6 +1,6 @@
 <template>
     <div class="auth-content">
-        <div class="auth-modal">
+        <div class="auth-modal" @keypress.enter="submit">
             <img src="@/assets/logo.png" alt="Logo" width="200" />
             <hr>
             <div class="auth-title">
@@ -56,6 +56,14 @@ export default {
                     this.showSignup = false
                 })
                 .catch(showError)
+        },
+
+        submit() {
+            if(this.showSignup) {
+                this.signup()
+            } else {
+                this.signin()
+            }
         }
     }
 }
